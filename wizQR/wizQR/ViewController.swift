@@ -22,7 +22,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         do{
-            
+            try scanQRCode()
         }catch {
             print("Failed to scan the QR/Barcode")
         }
@@ -35,7 +35,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             - metadataObjects: [Any]! Any and all objects captured from the stream
             - connection (AVCaptureConnection) Connection with the camera
     */
-    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!){
+    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection){
         if metadataObjects.count > 0 {
             let machineReadableCode = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
             if machineReadableCode.type == AVMetadataObject.ObjectType.qr {
