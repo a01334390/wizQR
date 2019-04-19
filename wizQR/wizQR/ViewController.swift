@@ -39,7 +39,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         if metadataObjects.count > 0 {
             let machineReadableCode = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
             if machineReadableCode.type == AVMetadataObject.ObjectType.qr {
-                stringURL = machineReadableCode.stringValue!
+                stringURL = "http://devwizticket-awiz.s3-website-us-east-1.amazonaws.com/verification/\(machineReadableCode.stringValue!)"
                 performSegue(withIdentifier: "openLink", sender: self)
             }
         }
